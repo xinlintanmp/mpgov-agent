@@ -1,0 +1,41 @@
+# mpgov governance policy. Edit freely - the agent is told to follow this.
+
+# What counts as "documented". Fields listed here are required on every
+# non-hidden event; anything missing shows up as a gap.
+required_event_fields:
+  - description
+  - display_name
+
+required_property_fields:
+  - description
+
+# Style rules the agent must follow when it writes copy.
+description_style: |
+  One or two sentences, present tense, plain English. Say what user action or
+  system condition fires the event, and name the properties that matter.
+  Do not restate the event name. Do not speculate: if the evidence is thin,
+  say what is unclear rather than inventing a meaning.
+
+display_name_style: |
+  Title Case, human-readable, no snake_case or dots. Keep it under 40 characters.
+
+# Events matching these patterns are ignored by the scan (Mixpanel internals,
+# SDK-generated, deprecated namespaces).
+ignore_events:
+  - "^\\$"
+  - "^mp_"
+
+# Optional: tags the agent may apply. Leave empty to allow any existing tag.
+allowed_tags: []
+
+# How gap severity is ranked. Two options:
+#
+#  1. A trailing window (default). Uses today's counts, which is right for a
+#     project receiving data now.
+#  2. An explicit date range, which takes precedence when both dates are set.
+#     Use this when the project's data sits outside the recent past - otherwise
+#     every event ranks as unknown volume and the ordering falls back to
+#     alphabetical, which is useless.
+volume_days: 30
+volume_from: "2025-09-01"
+volume_to: "2025-09-30"

@@ -1,0 +1,21 @@
+[project]
+name = "mpgov"
+version = "0.1.0"
+description = "Interactive terminal agent for Mixpanel Lexicon hygiene"
+requires-python = ">=3.10"
+dependencies = [
+    "mixpanel-headless>=0.2.0",
+    "claude-agent-sdk>=0.1.0",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+mpgov = "mpgov.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mpgov"]
